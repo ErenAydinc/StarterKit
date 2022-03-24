@@ -8,7 +8,7 @@ namespace Business.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<User, LoginDto>();
+            //CreateMap<User, LoginDto>();  Example pls not using 
         }
     }
 }
