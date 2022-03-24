@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Core.Entities.Concrete;
+using Entities.Dtos;
 
 namespace Business.Mappings
 {
@@ -6,20 +8,7 @@ namespace Business.Mappings
     {
         public MappingProfile()
         {
-            //CreateMap<AppUser, AppUserDetailDto>();
-            //CreateMap<AppUserDetailDto, AppUser>();
-
-            //CreateMap<AppUser, AppUserDto>();
-            //CreateMap<AppUserDto, AppUser>();
-
-            //CreateMap<AppUser, AppUserAddDto>();
-            //CreateMap<AppUserAddDto, AppUser>();
-
-            //CreateMap<AppUser, AppUserUpdateDto>();
-            //CreateMap<AppUserUpdateDto, AppUser>();
-
-            //CreateMap<AppUserDto, AppUserUpdateDto>();
-            //CreateMap<AppUserUpdateDto, AppUserDto>();
+            //CreateMap<User, LoginDto>();  Example pls not using
         }
     }
 }
