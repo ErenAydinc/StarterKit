@@ -4,8 +4,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Core.Entities.Concrete;
+using Core.Entities.Pagination;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
-
+using System.Linq;
 namespace Business.Concrete
 {
     public class UserManager:IUserService

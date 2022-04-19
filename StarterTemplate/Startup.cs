@@ -3,6 +3,7 @@ using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encyption;
 using Core.Utilities.Security.Jwt;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace StarterTemplate
@@ -33,7 +35,7 @@ namespace StarterTemplate
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddControllers();
             services.AddCors(options =>
             {

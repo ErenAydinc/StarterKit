@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Entities.Concrete;
+using Core.Entities.Pagination;
 
 namespace Business.Abstract
 {

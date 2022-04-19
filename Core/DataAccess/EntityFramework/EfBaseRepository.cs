@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Utilities.Results;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ namespace Core.DataAccess.EntityFramework
         where TEntity : class, IEntity, new()
     where TContext : DbContext, new()
     {
-        public async Task<IEnumerable<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> filter = null)
+
+
+        public async Task<IList<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> filter = null)
         {
             using (TContext context = new TContext())
             {
@@ -20,6 +23,15 @@ namespace Core.DataAccess.EntityFramework
                     ? await context.Set<TEntity>().ToListAsync()
                     : await context.Set<TEntity>().Where(filter).ToListAsync();
             }
+        }
+
+        public async Task<IQueryable<TEntity>> GetPagedListAsync()
+        {
+            using (TContext context = new TContext())
+            {
+                return await Task.FromResult(context.Set<TEntity>().AsNoTracking());
+            }
+            
         }
 
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter)
