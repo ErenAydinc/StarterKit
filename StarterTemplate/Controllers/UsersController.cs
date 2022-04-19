@@ -1,10 +1,8 @@
 ﻿using Business.Abstract;
-using Business.MediatR.Command.Users;
-using Core.Entities.Concrete;
-using Core.Utilities.Results;
+using Business.Handlers.Users.Commands;
+using Business.Handlers.Users.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace StarterTemplate.Controllers
@@ -22,7 +20,7 @@ namespace StarterTemplate.Controllers
 
         #region Ctor
 
-        public UsersController(IMediator mediator,IUserService userService)
+        public UsersController(IMediator mediator, IUserService userService)
         {
             _mediator = mediator;
             _userService = userService;
@@ -36,12 +34,32 @@ namespace StarterTemplate.Controllers
         public async Task<IActionResult> GetAll()
         {
             var users = await _mediator.Send(new GetAllUserQuery());
-            if (users!=null)
-            {
-              return Ok(users);
-            }
-            return BadRequest();
+            if (users.Success)
+                return Ok(users);
+            else
+                return BadRequest();
         }
+
+        [HttpGet("GetById")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var user = await _mediator.Send(new GetUserByIdQuery{ Id = id});
+            if (user.Success)
+                return Ok(user);
+            else
+                return BadRequest();
+        }
+
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create([FromBody] CreateUserCommand createUserCommand)
+        {
+            var create = await _mediator.Send(createUserCommand);
+            if (create.Success)
+                return Ok(create);
+            else
+                return BadRequest(create);
+        }
+
         #endregion
 
     }

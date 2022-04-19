@@ -1,4 +1,4 @@
-﻿using Business.MediatR.Command.Users;
+﻿using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -10,8 +10,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Business.MediatR.Handler
+namespace Business.Handlers.Users.Queries
 {
+    public class GetAllUserQuery : IRequest<IDataResult<IEnumerable<User>>>
+    {
+    }
+
     public class GetAllUserQueryHandler : IRequestHandler<GetAllUserQuery, IDataResult<IEnumerable<User>>>
     {
         private readonly IUserDal _userDal;
@@ -25,7 +29,7 @@ namespace Business.MediatR.Handler
         {
 
             var users = await _userDal.GetListAsync();
-            return new SuccessDataResult<IEnumerable<User>>(users, "All datas");
+            return new SuccessDataResult<IEnumerable<User>>(users, Messages.Listed);
         }
     }
 }
