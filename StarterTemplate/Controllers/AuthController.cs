@@ -1,8 +1,10 @@
-﻿using Business.Abstract;
-using Entities.Dtos;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Business.Abstract;
+using Entities.Dtos;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
@@ -11,11 +13,10 @@ namespace WebAPI.Controllers
     public class AuthController:Controller
     {
         private IAuthService _authService;
-        private readonly IMediator _mediator;
-        public AuthController(IAuthService authService,IMediator mediator)
+
+        public AuthController(IAuthService authService)
         {
             _authService = authService;
-            _mediator = mediator;
         }
 
         [HttpPost("login")]
